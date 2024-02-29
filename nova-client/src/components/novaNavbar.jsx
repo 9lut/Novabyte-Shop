@@ -9,10 +9,17 @@ const NovaNavbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
   const { name } = userData();
+  const [cartItemCount, setCartItemCount] = useState(0);
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
-    setIsLoggedIn(user ? true : false);
+    const storedUser = localStorage.getItem("user");
+    setIsLoggedIn(storedUser ? true : false);
+
+    const storedCart = localStorage.getItem('cart');
+    if (storedCart) {
+      const cartItems = JSON.parse(storedCart);
+      setCartItemCount(cartItems.length);
+    }
   }, []);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -53,9 +60,9 @@ const NovaNavbar = () => {
               <a className="nav-link" href="/payment">แจ้งการโอน</a>
             </li>
             <li className="nav-item">
-              <NavLink to="#" className="nav-link basket-icon-wrapper">
-              <span className="basket-items">{0}</span>
-              <FaShoppingBasket className="basket-icon" />
+              <NavLink to="/cart" className="nav-link basket-icon-wrapper">
+                <span className="basket-items">{cartItemCount}</span>
+                <FaShoppingBasket className="basket-icon" />
               </NavLink>
             </li>
             <li className="nav-item">
@@ -66,7 +73,7 @@ const NovaNavbar = () => {
                   </button>
                   <div className={`dropdown-menu ${isOpen ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
                     <button className="dropdown-item"  onClick={() => handleNavigation("/profile")}>โปรไฟล์</button>
-                    <button className="dropdown-item"  onClick={() => handleNavigation("#")}>ประวัติการสั่งซื้อ</button>
+                    <button className="dropdown-item"  onClick={() => handleNavigation("/orderhistory")}>ประวัติการสั่งซื้อ</button>
                     <button className="dropdown-item" onClick={handleLogout}>ออกจากระบบ</button>
                   </div>
                 </div>

@@ -19,6 +19,13 @@
     grid-column-gap: 20px; /* กำหนดระยะห่างระหว่างคอลัมน์ */
 }
 
+.quantity-control button {
+  flex: 0 0 auto; /* ปรับขนาดของปุ่มให้ไม่ยืดขยาย */
+  width: 30px; /* กำหนดความกว้างของปุ่ม */
+  padding: 5px; /* เพิ่มขอบของปุ่ม */
+  
+}
+
 @media (max-width: 768px) {
     .product-image img {
       width: auto; /* กำหนดให้รูปภาพเต็มกว้างของ container */
@@ -34,3 +41,6 @@
       margin-top: 20px; /* กำหนดระยะห่างของข้อความด้านล่าง */
     }
   }
+
+
+  

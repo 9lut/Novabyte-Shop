@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useProductView } from '../../hooks/useProductView';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../cart/cartActions';
 import Navbar from '../novaNavbar';
 import conf from "../../conf";
 import './ProductView.css';
 import Loading from '../Loading';
 import Footer from '../Footer';
 
-
 function ProductView() {
   const { id } = useParams(); 
   const { product } = useProductView(id);
   const [loading, setLoading] = useState(true);
+  const [quantity, setQuantity] = useState(1); // State เก็บจำนวนสินค้าที่จะเพิ่ม
+  const dispatch = useDispatch(); 
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setLoading(false); // ตั้งค่า loading เป็น false หลังจากผ่านไปหนึ่งวินาที
+      setLoading(false);
     }, 300);
 
     return () => clearTimeout(timer);
@@ -30,15 +33,38 @@ function ProductView() {
 
   const productImage = `${conf.apiPrefix}${product.attributes.image.data[0].attributes.formats.medium.url}`;
   
+  const handleAddToCart = () => {
+    if (quantity <= product.attributes.quantity) {
+      const productToAdd = { ...product, quantity: quantity }; // ใช้จำนวนสินค้าจาก state ที่เก็บไว้
+      dispatch(addToCart(productToAdd));
+    } else {
+      alert('ไม่สามารถเพิ่มสินค้าได้ เนื่องจากเกินจำนวนสินค้าที่มีในสต๊อก');
+    }
+  };
+
+  const handleIncreaseQuantity = () => {
+    if (quantity < product.attributes.quantity) {
+      setQuantity(quantity + 1);
+    } else {
+      alert('ไม่สามารถเพิ่มจำนวนสินค้าได้ เนื่องจากเกินจำนวนสินค้าที่มีในสต๊อก');
+    }
+  };
+
+  const handleDecreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
   return (
     <div>
       <Navbar />
-      <div className="container mt-4"> {/* เพิ่ม container และขอบกรอบ */}
-        <div className="row justify-content-center"> {/* จัดตำแหน่งตรงกลางด้วย justify-content-center */}
-          <div className="col-md-6"> {/* แบ่งส่วนเป็น 6 ของขนาดหน้าจอมากสุด (medium) */}
+      <div className="container mt-4">
+        <div className="row justify-content-center">
+          <div className="col-md-6">
             <div className="product-details">
               <div className="product-image">
-                <img src={productImage} alt={product.attributes.title} className="img-fluid rounded" /> {/* เพิ่มคลาส img-fluid เพื่อให้รูปภาพปรับขนาดตามขนาดหน้าจอและ rounded เพื่อใส่ขอบโค้ง */}
+                <img src={productImage} alt={product.attributes.title} className="img-fluid rounded" />
               </div>
             </div>
           </div>
@@ -46,8 +72,14 @@ function ProductView() {
             <div className="product-info">
               <h2>{product.attributes.title}</h2>
               <p>{product.attributes.description}</p>
+              <p>สินค้าในสต๊อก : {product.attributes.quantity}</p>
               <p>ราคา: ฿{product.attributes.price}</p>
-              <button className="btn btn-primary">เพิ่มลงตะกร้า</button>
+              <div className="quantity-control">
+                <button className="btn btn-secondary" onClick={handleDecreaseQuantity}>-</button>
+                <input type="number" value={quantity} readOnly />
+                <button className="btn btn-secondary" onClick={handleIncreaseQuantity}>+</button>
+              </div>
+              <button className="btn btn-primary" onClick={handleAddToCart}>เพิ่มลงตะกร้า</button>
             </div>
           </div>
         </div>
