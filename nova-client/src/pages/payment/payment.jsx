@@ -87,7 +87,6 @@ const Payment = () => {
       }
   
     const formData = new FormData();
-  
     formData.append("data", JSON.stringify({
       Title,
       amount,
@@ -95,6 +94,7 @@ const Payment = () => {
       Date,
       username: user.username, // เพิ่มข้อมูล username จาก user ที่ได้จาก Local Storage
       email: user.email,
+      status: "Inspecting",
     }));
   
     formData.append("files.slipImage", image);
@@ -108,12 +108,11 @@ const Payment = () => {
         body: formData,
       });
       if (response.ok) {
+        navigate("/paymenthistory");
         Swal.fire({
           title: 'แจ้งยอดโอนสำเร็จ',
           icon: 'success',
           text: ' รอแอดมินตรวจสอบ สามารถเช็คที่ประวัติการโอน',
-        }).then(() => {
-          window.location.reload();
         });
         
       } else {
@@ -151,6 +150,7 @@ const Payment = () => {
             value={Title}
             onChange={(event) => setTitle(event.target.value)}
             placeholder="กรอกเลขบิล"
+            maxLength={10}
             className="form-input"
           />
         </div>
@@ -174,6 +174,7 @@ const Payment = () => {
             value={amount}
             placeholder="จำนวนยอดโอน"
             min={1}
+            max={10000000}
             onChange={(event) => setAmount(event.target.value)}
             className="form-input"
           />

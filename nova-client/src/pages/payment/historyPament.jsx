@@ -84,7 +84,7 @@ const PaymentHistory = () => {
             ))}
             </tbody>
           </table>
-          {filteredPayments.length === 0 && <p>ไม่มีประวัติการแจ้งโอน</p>}
+          {filteredPayments.length === 0 && <p style={{ textAlign: 'center' }}>ไม่มีประวัติการแจ้งโอน</p>}
         </div>
       </div>
       <Modal show={modalShow} onHide={() => setModalShow(false)}>
