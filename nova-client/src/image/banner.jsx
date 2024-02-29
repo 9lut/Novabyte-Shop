@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'; 
+import './Banner.css'; // import CSS file
 
 const Banner = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -29,20 +30,17 @@ const Banner = () => {
         </ol>
         <div className="carousel-inner">
           <div className={`carousel-item ${currentSlide === 0 ? "active" : ""}`}>
-            <img src={require("../image/banner/1.png")} 
-            className="d-block w-100" style={{ width: '1900px', height: '360px' }} alt=""/>
+            <img src={require("../image/banner/1.png")} className="d-block banner-image" alt=""/>
             <div className="carousel-caption d-none d-md-block">
             </div>
           </div>
           <div className={`carousel-item ${currentSlide === 1 ? "active" : ""}`}>
-            <img src={require("../image/banner/2.png")}
-            className="d-block w-100" style={{ width: '1900px', height: '360px' }} alt=""/>
+            <img src={require("../image/banner/2.png")} className="d-block banner-image" alt=""/>
             <div className="carousel-caption d-none d-md-block">
             </div>
           </div>
           <div className={`carousel-item ${currentSlide === 2 ? "active" : ""}`}>
-            <img src={require("../image/banner/3.png")} 
-            className="d-block w-100" style={{ width: '1900px', height: '360px' }} alt=""/>
+            <img src={require("../image/banner/3.png")} className="d-block banner-image" alt=""/>
             <div className="carousel-caption d-none d-md-block">
             </div>
           </div>
