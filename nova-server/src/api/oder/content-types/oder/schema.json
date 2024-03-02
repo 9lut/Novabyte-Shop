@@ -26,6 +26,18 @@
     },
     "orderDateTime": {
       "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "address": {
+      "type": "text"
+    },
+    "post": {
+      "type": "biginteger"
+    },
+    "number": {
+      "type": "biginteger"
     }
   }
 }
