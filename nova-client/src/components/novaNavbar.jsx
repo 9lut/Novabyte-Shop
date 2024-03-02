@@ -3,13 +3,23 @@ import { useNavigate , NavLink } from 'react-router-dom';
 import { userData } from '../helpers';
 import { FaShoppingBasket } from "react-icons/fa";
 import "./NovaNavbar.css"
+import Loading from './Loading'; // import Loading component ที่สร้างไว้
 
 const NovaNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true); // เพิ่ม state สำหรับ loading
   const navigate = useNavigate();
   const { name } = userData();
   const [cartItemCount, setCartItemCount] = useState(0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false); // เมื่อโหลดเสร็จแล้วกำหนดให้ loading เป็น false
+    }, 300); // ในกรณีนี้ให้ทำการโหลดเป็นเวลา 300 มิลลิวินาที
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -34,6 +44,10 @@ const NovaNavbar = () => {
   const handleNavigation = (path) => {
     navigate(path);
   };
+
+  if (loading) { // ถ้าโหลดอยู่ให้แสดง Loading component
+    return <Loading />;
+  }
 
   return (
     <nav className={`navbar navbar-expand-lg navbar-dark bg-dark`}>
