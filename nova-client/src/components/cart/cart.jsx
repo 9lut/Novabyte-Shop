@@ -16,6 +16,19 @@ const Cart = () => {
   const [showAddressModal, setShowAddressModal] = useState(false);
 
   const handleShowAddressModal = () => {
+    if (!user.jwt) {
+      Swal.fire({
+        title: 'โปรดเข้าสู่ระบบก่อน',
+        icon: 'error',
+        text: 'ต้องเข้าสู่ระบบก่อนถึงจะสามารถสั่งซื้อได้',
+        confirmButtonText: 'OK',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate('/login');
+        }
+      });
+      return;
+    }
     if (uniqueCartItems.length === 0) {
       navigate("/productall");
       Swal.fire({
@@ -132,7 +145,7 @@ const Cart = () => {
       // รายละเอียดการสั่งซื้อ
       const storedCartItems = JSON.parse(localStorage.getItem('cart')) || [];
       const total = storedCartItems.reduce((acc, item) => acc + item.attributes.price, 0);
-      const productList = storedCartItems.map(item => item.attributes.title).join(" , ");
+      const productList = storedCartItems.map(item => item.attributes.title).join("  \n  ");
       let bill = 'NOVA';
       for (let i = 0; i < 6; i++) {
         bill += Math.floor(Math.random() * 10); // เลขบิลขึ้นต้นด้วย NOVA+เลข 0-9
@@ -173,6 +186,7 @@ const Cart = () => {
             address: address,
             post: post,
             number: number,
+            status: "Unpaid",
           }
         }),
       })

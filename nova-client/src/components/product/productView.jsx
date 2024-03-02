@@ -35,8 +35,9 @@ function ProductView() {
   
   const handleAddToCart = () => {
     if (quantity <= product.attributes.quantity) {
-      const productToAdd = { ...product, quantity: quantity }; // ใช้จำนวนสินค้าจาก state ที่เก็บไว้
-      dispatch(addToCart(productToAdd));
+      for (let i = 0; i < quantity; i++) {
+        dispatch(addToCart(product));
+      }
     } else {
       alert('ไม่สามารถเพิ่มสินค้าได้ เนื่องจากเกินจำนวนสินค้าที่มีในสต๊อก');
     }

@@ -52,7 +52,7 @@ const OrderHistory = () => {
     setSelectedPayment(payment);
     setModalShow(true);
   }
-
+  
   return (
     <div>
       <Navbar />
@@ -64,7 +64,7 @@ const OrderHistory = () => {
             <tr>
                 <th>เลขบิล</th>
                 <th>วันที่และเวลา</th>
-                <th>รายการสินค้า</th>
+                <th className="hide-on-small-screen">รายการสินค้า</th>
                 <th className="hide-on-small-screen">ยอดทั้งหมด</th>
                 <th className="hide-on-small-screen">สถานะ</th>
                 <th>รายละเอียดเพิ่มเติม</th>
@@ -83,7 +83,11 @@ const OrderHistory = () => {
                     }}>คัดลอก</BsCopy>
                 </td>
                 <td>{oder.attributes.orderDateTime}</td>
-                <td className="hide-on-small-screen">{oder.attributes.products}</td>
+                <td className="hide-on-small-screen">
+                  {oder.attributes.products.split("\n").map((product, index) => (
+                    <div key={index}>{product}</div>
+                  ))}
+                </td>
                 <td className="hide-on-small-screen">{oder.attributes.total} บาท</td>
                 <td className="hide-on-small-screen">{oder.attributes.status}</td>
                 <td>
@@ -98,16 +102,23 @@ const OrderHistory = () => {
       </div>
       <Modal show={modalShow} onHide={() => setModalShow(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>รายละเอียดการแจ้งโอน</Modal.Title>
+          <Modal.Title>ประวัติการสั่งซื้อ</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {selectedPayment && (
             <div className="popup-content">
-              <p><strong>เลขบิล :</strong> {selectedPayment.attributes.Title}</p>
-              <p><strong>จำนวนเงิน :</strong> {selectedPayment.attributes.amount}</p>
-              <p><strong>ธนาคาร :</strong> {selectedPayment.attributes.bank}</p>
-              <p><strong>วันที่และเวลา :</strong> {selectedPayment.attributes.Date}</p>
+              <p><strong>เลขบิล :</strong> {selectedPayment.attributes.bill}</p>
+              <p style={{ whiteSpace: 'pre-line' }}>
+                <strong>รายการสินค้า :</strong><br/>
+                {selectedPayment.attributes.products.split("\n").map((product, index) => (<div key={index}>{product}</div>))}
+              </p>
+              <p><strong>จำนวนเงิน :</strong> {selectedPayment.attributes.total}</p>
+              <p><strong>วันที่และเวลา :</strong> {selectedPayment.attributes.orderDateTime}</p>
               <p><strong>สถานะ:</strong> {selectedPayment.attributes.status}</p>
+              <p><strong>ชื่อผู้รับ :</strong> {selectedPayment.attributes.name}</p>
+              <p><strong>ที่อยู่ :</strong> {selectedPayment.attributes.address}</p>
+              <p><strong>รหัสไปรษณีย์ :</strong> {selectedPayment.attributes.post}</p>
+              <p><strong>เบอร์โทร :</strong> {"0" + selectedPayment.attributes.number}</p>  
             </div>
           )}
         </Modal.Body>
