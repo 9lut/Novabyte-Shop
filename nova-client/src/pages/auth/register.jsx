@@ -31,6 +31,16 @@ const Registration = () => {
         return;
       }
   
+      // ตรวจสอบ username ว่าเป็นพิมพ์เล็กเท่านั้นหรือไม่
+      if (!/^[a-z]+$/.test(user.username)) {
+        Swal.fire({
+          icon: 'error',
+          title: 'สมัครล้มเหลว',
+          text: 'ชื่อผู้ใช้ต้องเป็นพิมพ์เล็กเท่านั้น',
+        });
+        return;
+      }
+  
       // ตรวจสอบรหัสผ่านว่ามีความยาวอย่างน้อย 6 ตัวอักษรหรือไม่
       if (user.password.length < 6) {
         Swal.fire({
@@ -70,6 +80,7 @@ const Registration = () => {
       });
     }
   };
+  
 
   return (
     <div>
