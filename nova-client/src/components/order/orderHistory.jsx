@@ -3,6 +3,7 @@ import Navbar from '../../components/novaNavbar';
 import conf from "../../conf";
 import { userData } from '../../helpers';
 import { Modal, Button } from 'react-bootstrap';
+import { BsCopy } from "react-icons/bs";
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import "./PaymentHistory.css"; 
 
@@ -72,9 +73,17 @@ const OrderHistory = () => {
             <tbody>
             {filteredPayments.map((oder, index) => (
                 <tr key={index}>
-                <td>{oder.attributes.bill}</td>
+                <td>
+                {oder.attributes.bill}
+                <BsCopy
+                    className="copy-button"
+                    onClick={() => {
+                    navigator.clipboard.writeText(oder.attributes.bill);
+                    alert("คัดลอกแล้ว " + oder.attributes.bill);
+                    }}>คัดลอก</BsCopy>
+                </td>
                 <td>{oder.attributes.orderDateTime}</td>
-                <td>{oder.attributes.products}</td>
+                <td className="hide-on-small-screen">{oder.attributes.products}</td>
                 <td className="hide-on-small-screen">{oder.attributes.total} บาท</td>
                 <td className="hide-on-small-screen">{oder.attributes.status}</td>
                 <td>
