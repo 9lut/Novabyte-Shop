@@ -38,6 +38,15 @@
     },
     "number": {
       "type": "biginteger"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "Successfully paid",
+        "Unpaid",
+        "Carry On",
+        "Complete"
+      ]
     }
   }
 }
