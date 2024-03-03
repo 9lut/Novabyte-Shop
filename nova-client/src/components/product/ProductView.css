@@ -19,6 +19,17 @@
     grid-column-gap: 20px; /* กำหนดระยะห่างระหว่างคอลัมน์ */
 }
 
+.quantity-control {
+  display: flex;
+  align-items: center; /* จัดให้เนื้อหาอยู่ตรงกลางแนวตั้ง */
+}
+
+.quantity-control input[type="number"] {
+  width: 50px; /* กำหนดความกว้างของ input */
+  text-align: center; /* จัดให้เลขอยู่ตรงกลาง */
+  margin: 0 5px; /* กำหนดระยะห่างระหว่าง input กับปุ่ม */
+}
+
 .quantity-control button {
   flex: 0 0 auto; /* ปรับขนาดของปุ่มให้ไม่ยืดขยาย */
   width: 30px; /* กำหนดความกว้างของปุ่ม */

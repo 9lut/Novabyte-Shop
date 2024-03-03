@@ -5,7 +5,6 @@ import { userData } from '../../helpers';
 import { Modal, Button } from 'react-bootstrap';
 import { BsCopy } from "react-icons/bs";
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import "./PaymentHistory.css"; 
 
 const OrderHistory = () => {
   const [payments, setPayments] = useState([]); 
@@ -52,6 +51,20 @@ const OrderHistory = () => {
     setSelectedPayment(payment);
     setModalShow(true);
   }
+
+  const countProducts = (products) => {
+    const productCount = products.reduce((acc, curr) => {
+      const trimmedProduct = curr.trim(); // ตัดช่องว่างด้านหน้าและด้านหลังของสินค้าออก
+      acc[trimmedProduct] = (acc[trimmedProduct] || 0) + 1;
+      return acc;
+    }, {});
+  
+    // สร้างอาร์เรย์ของสตริงที่แสดงชื่อสินค้าและจำนวน
+    const productStrings = Object.entries(productCount).map(([product, count]) => `${product} x ${count}`);
+  
+    return productStrings;
+  };
+  
   
   return (
     <div>
@@ -71,27 +84,27 @@ const OrderHistory = () => {
             </tr>
             </thead>
             <tbody>
-            {filteredPayments.map((oder, index) => (
+            {filteredPayments.map((order, index) => (
                 <tr key={index}>
                 <td>
-                {oder.attributes.bill}
+                {order.attributes.bill}
                 <BsCopy
                     className="copy-button"
                     onClick={() => {
-                    navigator.clipboard.writeText(oder.attributes.bill);
-                    alert("คัดลอกแล้ว " + oder.attributes.bill);
+                    navigator.clipboard.writeText(order.attributes.bill);
+                    alert("คัดลอกแล้ว " + order.attributes.bill);
                     }}>คัดลอก</BsCopy>
                 </td>
-                <td>{oder.attributes.orderDateTime}</td>
+                <td>{order.attributes.orderDateTime}</td>
                 <td className="hide-on-small-screen">
-                  {oder.attributes.products.split("\n").map((product, index) => (
-                    <div key={index}>{product}</div>
-                  ))}
+                {countProducts(order.attributes.products.split("\n")).map((productString, index) => (
+                  <div key={index}>{productString}</div>
+                ))}
                 </td>
-                <td className="hide-on-small-screen">{oder.attributes.total} บาท</td>
-                <td className="hide-on-small-screen">{oder.attributes.status}</td>
+                <td className="hide-on-small-screen">{order.attributes.total} บาท</td>
+                <td className="hide-on-small-screen">{order.attributes.status}</td>
                 <td>
-                    <Button className="popup-button" onClick={() => handleModalOpen(oder)}>ดูเพิ่มเติม</Button>
+                    <Button className="popup-button" onClick={() => handleModalOpen(order)}>ดูเพิ่มเติม</Button>
                 </td>
                 </tr>
             ))}
@@ -110,7 +123,9 @@ const OrderHistory = () => {
               <p><strong>เลขบิล :</strong> {selectedPayment.attributes.bill}</p>
               <p style={{ whiteSpace: 'pre-line' }}>
                 <strong>รายการสินค้า :</strong><br/>
-                {selectedPayment.attributes.products.split("\n").map((product, index) => (<div key={index}>{product}</div>))}
+                {countProducts(selectedPayment.attributes.products.split("\n")).map((productString, index) => (
+                  <div key={index}>{productString}</div>
+                ))}
               </p>
               <p><strong>จำนวนเงิน :</strong> {selectedPayment.attributes.total}</p>
               <p><strong>วันที่และเวลา :</strong> {selectedPayment.attributes.orderDateTime}</p>
