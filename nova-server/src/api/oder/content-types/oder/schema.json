@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "oders",
+  "info": {
+    "singularName": "oder",
+    "pluralName": "oders",
+    "displayName": "Order",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "username": {
+      "type": "string"
+    },
+    "total": {
+      "type": "biginteger"
+    },
+    "bill": {
+      "type": "string"
+    },
+    "products": {
+      "type": "text"
+    },
+    "orderDateTime": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "address": {
+      "type": "text",
+      "required": true
+    },
+    "post": {
+      "type": "biginteger",
+      "required": true
+    },
+    "number": {
+      "type": "biginteger",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "Successfully paid",
+        "Unpaid",
+        "Carry On",
+        "Complete"
+      ]
+    }
+  }
+}

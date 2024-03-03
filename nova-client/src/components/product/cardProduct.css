@@ -1,0 +1,41 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch; /* ทำให้ card ทุกใบมีความสูงเท่ากัน */
+}
+
+.card {
+    width: 300px; /* กำหนดความกว้างของ card */
+    margin: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    display: flex; /* ทำให้เนื้อหาใน card แสดงเป็น flexbox */
+    flex-direction: column; /* ให้เนื้อหาภายใน card เรียงตามแนวดิ่ง */
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-height: 280px;
+}
+
+.card-body {
+    padding: 15px;
+    flex-grow: 1; /* ทำให้เนื้อหาใน card ขยายตามความสูงของ card */
+}
+
+.card-title {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #0004fd;
+}
+
+.card-text {
+    margin-bottom: 8px;
+}

@@ -1,0 +1,57 @@
+/* ProductView.css */
+
+.product-image img {
+
+    width: 400px; /* กำหนดความกว้างของรูปภาพเป็น 200px */
+    height: 400px; /* กำหนดความสูงของรูปภาพเป็น 200px */
+  }
+.product-details {
+    display: flex;
+  }
+  
+  .product-image {
+    margin-right: 10px; /* กำหนดระยะห่างระหว่างรูปภาพและข้อความ */
+  }
+
+.product-details {
+    display: grid;
+    grid-template-columns: auto 1fr; /* กำหนดขนาดคอลัมน์ของ Grid Layout */
+    grid-column-gap: 20px; /* กำหนดระยะห่างระหว่างคอลัมน์ */
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center; /* จัดให้เนื้อหาอยู่ตรงกลางแนวตั้ง */
+}
+
+.quantity-control input[type="number"] {
+  width: 50px; /* กำหนดความกว้างของ input */
+  text-align: center; /* จัดให้เลขอยู่ตรงกลาง */
+  margin: 0 5px; /* กำหนดระยะห่างระหว่าง input กับปุ่ม */
+}
+
+.quantity-control button {
+  flex: 0 0 auto; /* ปรับขนาดของปุ่มให้ไม่ยืดขยาย */
+  width: 30px; /* กำหนดความกว้างของปุ่ม */
+  padding: 5px; /* เพิ่มขอบของปุ่ม */
+  
+}
+
+@media (max-width: 768px) {
+    .product-image img {
+      width: auto; /* กำหนดให้รูปภาพเต็มกว้างของ container */
+      height: auto; /* ปรับความสูงให้เพื่อรักษาอัตราส่วน */
+    }
+  
+    .product-details {
+      flex-direction: column; /* จัดเรียงใหม่ให้เป็นแนวตั้ง */
+      align-items: center; /* จัดให้เนื้อหาอยู่ตรงกลาง */
+    }
+  
+    .product-info {
+      margin-top: 20px; /* กำหนดระยะห่างของข้อความด้านล่าง */
+    }
+  }
+
+
+  

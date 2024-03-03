@@ -1,0 +1,73 @@
+.history-titile{
+  text-align: center;
+}
+.table-container {
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  /* เพิ่มสไตล์ให้กับ container */
+  .payment-history-container {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+  }
+  
+  /* เพิ่มสไตล์ให้กับปุ่มดูเพิ่มเติม */
+  .popup-button {
+    background-color: #0055ff; /* เขียว */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+/* Responsive CSS */
+@media screen and (max-width: 600px) {
+  .table-container {
+    overflow-x: auto;
+    max-width: 90%; /* เพิ่มขอบเขตสูงสุดของ container */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  /* ซ่อนคอลัมน์ที่ไม่ต้องการแสดงเมื่อขนาดหน้าจอเล็ก */
+  .hide-on-small-screen {
+    display: none;
+  }
+}

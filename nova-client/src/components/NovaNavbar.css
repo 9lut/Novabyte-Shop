@@ -1,0 +1,40 @@
+/* cardProduct.css */
+.navbar-nav {
+  margin-left: auto;
+}
+
+.navbar-nav .nav-item {
+  margin-left: 10px; /* ระยะห่างระหว่างเมนู */
+}
+
+.navbar-nav .nav-item a {
+  color: white; /* สีข้อความเมนู */
+}
+
+.navbar-nav .nav-item a:hover {
+  color: lightgray; /* สีข้อความเมนูเมื่อ hover */
+}
+
+.navbar-nav .nav-item .btn {
+  margin-left: 10px; /* ระยะห่างระหว่างปุ่ม */
+}
+
+.navbar-brand img {
+  width: 120px; /* ปรับขนาดตามที่ต้องการ */
+  height: auto; /* คงความสัดส่วนของภาพ */
+}
+
+@media (max-width: 768px) {
+  .navbar-nav .nav-item .btn {
+    display: inline-block; /* แสดงปุ่มเมื่อเป็นโหมด Responsive */
+    margin-left: 10px; /* ระยะห่างระหว่างปุ่ม */
+    color: white; /* สีข้อความเมนู */
+  }
+
+  .navbar-nav .nav-item .btn:hover {
+    color: lightgray; /* สีข้อความเมนูเมื่อ hover */
+  }
+  .navbar-nav .nav-item .select-logout:hover {
+    color: lightgray; /* สีข้อความเมนูเมื่อ hover */
+  }
+}
