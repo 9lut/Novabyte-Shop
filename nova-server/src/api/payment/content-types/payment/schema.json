@@ -14,11 +14,11 @@
   "attributes": {
     "Title": {
       "type": "string",
-      "required": false
+      "required": true
     },
     "Date": {
       "type": "datetime",
-      "required": false
+      "required": true
     },
     "amount": {
       "type": "biginteger"
@@ -27,12 +27,13 @@
       "type": "enumeration",
       "enum": [
         "xxx-xxx-xxxx ธนาคารกสิกรไทย"
-      ]
+      ],
+      "required": true
     },
     "slipImage": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ]

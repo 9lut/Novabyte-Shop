@@ -28,16 +28,20 @@
       "type": "string"
     },
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "address": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "post": {
-      "type": "biginteger"
+      "type": "biginteger",
+      "required": true
     },
     "number": {
-      "type": "biginteger"
+      "type": "biginteger",
+      "required": true
     },
     "status": {
       "type": "enumeration",
