@@ -31,7 +31,7 @@ function ProductView() {
     return <div><Loading /></div>;
   }
 
-  const productImage = `${conf.apiPrefix}${product.attributes.image.data[0].attributes.formats.medium.url}`;
+  const productImage = product.attributes.image.data[0].attributes.formats.medium.url;
   
   const handleAddToCart = () => {
     if (quantity <= product.attributes.quantity) {

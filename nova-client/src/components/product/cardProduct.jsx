@@ -4,7 +4,7 @@ import conf from "../../conf";
 import './cardProduct.css';
 
 function Product({ product }) {
-    const productImage = `${conf.apiPrefix}${product.attributes.image.data[0].attributes.formats.medium.url}`;
+    const productImage = product.attributes.image.data[0].attributes.formats.medium.url;
 
     return (
         <div className="container">
