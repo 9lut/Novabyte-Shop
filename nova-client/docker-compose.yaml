@@ -1,0 +1,8 @@
+version: "3.2"
+services:
+  my-react-app:
+    image: my-react-app
+    ports:
+      - "8000:3000"
+    environment:
+      - NODE_ENV=production
