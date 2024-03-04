@@ -74,7 +74,7 @@ const Cart = () => {
       text: 'คุณแน่ใจหรือไม่ที่ต้องการลบสินค้านี้ออกจากตะกร้า?',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'ใช่, ลบ!',
+      confirmButtonText: 'ลบ',
       cancelButtonText: 'ยกเลิก'
     }).then((result) => {
       if (result.isConfirmed) {
@@ -85,7 +85,10 @@ const Cart = () => {
           'ลบสำเร็จ!',
           'สินค้าถูกลบออกจากตะกร้าแล้ว',
           'success'
-        );
+        ).then(() => {
+          // รีเฟรชหน้าหลังจากการลบสินค้าออกจากตะกร้า
+          window.location.reload();
+        });
       }
     });
   };
