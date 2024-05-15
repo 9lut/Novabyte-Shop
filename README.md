@@ -23,11 +23,11 @@
 
 ```bash
 # Run Client (React)
-$ cd client-search-for-courses
+$ cd nova-client
 $ npm start
 
 # Run Server (strapi)
-$ cd server-search-for-courses
+$ cd nova-server
 $ npm npm run develop
 ```
 
